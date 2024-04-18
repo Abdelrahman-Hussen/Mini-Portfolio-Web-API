@@ -14,6 +14,7 @@ This repository contains a .NET Web API project designed as a mini portfolio to 
 - **Generic Repository**: Abstracts the data layer to provide a reusable interface for accessing data sources.
 - **Specification Design Pattern (DP)**: Enables business rules to be encapsulated in a flexible way.
 - **Unit of Work**: Maintains a list of domain actions and commits them as a single transaction.
+- **there is more, Feel free to take a tour and discover the code**.
 
 ## Features
 - **Global Error Handling**: Ensures that all unhandled exceptions are caught and handled gracefully.
