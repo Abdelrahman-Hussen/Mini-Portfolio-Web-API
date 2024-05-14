@@ -12,7 +12,7 @@ namespace Portfolio.Controllers.AboutSection
     {
         [AllowAnonymous]
         [HttpGet("[action]")]
-        public ActionResult<ResponseModel<List<AboutUsDto>>> Get()
+        public ActionResult<ResponseModel<List<AboutUsDto>>> Getttt()
             => Ok(_aboutUsService.Get());
 
         [HttpPost("[action]")]
