@@ -32,10 +32,10 @@ jobs:
       run: dotnet restore ./Zomra/Zomra.sln
 
     - name: Build
-      run: dotnet build ./Zomra/Zomra.sln --configuration Release --no-restore
+      run: dotnet build ./Portfolio.sln --configuration Release --no-restore
 
     - name: Publish
-      run: dotnet publish ./Zomra/Zomra.sln --configuration Release --no-build --output '${{ env.WEBAPP_PACKAGE_PATH }}'
+      run: dotnet publish ./Portfolio.sln --configuration Release --no-build --output '${{ env.WEBAPP_PACKAGE_PATH }}'
 
     - name: Deployment
       uses: SamKirkland/FTP-Deploy-Action@4.0.0
