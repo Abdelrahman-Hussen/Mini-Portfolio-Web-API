@@ -21,4 +21,8 @@
     <ProjectReference Include="..\Portfolio.Infrastructure\Portfolio.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\Review\" />
+  </ItemGroup>
+
 </Project>
