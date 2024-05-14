@@ -45,3 +45,4 @@ jobs:
         password: ${{ env.FTP_PASSWORD }}
         local-dir: ${{ env.WEBAPP_PACKAGE_PATH }}
         server-dir: ${{env.FTP_DISTANATION_URL}}
+        delete: true
