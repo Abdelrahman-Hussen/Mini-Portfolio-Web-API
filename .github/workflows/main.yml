@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   push:
     branches:
-    - main
+    - master
 
 env:
   WEBAPP_NAME: base-project
