@@ -9,7 +9,7 @@ on:
 env:
   WEBAPP_NAME: base-project
   WEBAPP_PACKAGE_PATH: "./publish/"
-  ##FTP_DISTANATION_URL: 'http://Zomra.somee.com/'
+  FTP_DISTANATION_URL: 'https://mini-portfolio.runasp.net/'
   ##FTP_SITE_PATH: 'www.Zomra.somee.com'
   FTP_SERVER: 'site3637.siteasp.net'
   FTP_USERNAME: site3637
@@ -44,4 +44,4 @@ jobs:
         username: ${{ env.FTP_USERNAME }}
         password: ${{ env.FTP_PASSWORD }}
         local-dir: ${{ env.WEBAPP_PACKAGE_PATH }}
-       ## server-dir: ${{env.FTP_DISTANATION_URL}}
+        server-dir: ${{env.FTP_DISTANATION_URL}}
