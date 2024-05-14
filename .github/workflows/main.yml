@@ -10,7 +10,6 @@ env:
   WEBAPP_NAME: base-project
   WEBAPP_PACKAGE_PATH: "./publish/"
   FTP_DISTANATION_URL: './wwwroot/'
-  ##FTP_SITE_PATH: 'www.Zomra.somee.com'
   FTP_SERVER: 'site3637.siteasp.net'
   FTP_USERNAME: site3637
   FTP_PASSWORD: Ei7#8H@w+nM4
@@ -45,4 +44,4 @@ jobs:
         password: ${{ env.FTP_PASSWORD }}
         local-dir: ${{ env.WEBAPP_PACKAGE_PATH }}
         server-dir: ${{env.FTP_DISTANATION_URL}}
-        delete: true
+        dangerous-clean-slate: true
