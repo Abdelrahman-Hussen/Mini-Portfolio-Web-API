@@ -18,24 +18,24 @@ env:
 jobs:
   publish:
     runs-on: ubuntu-latest
-
+#
     steps:
-    - uses: actions/checkout@v3
+  #  - uses: actions/checkout@v3
 
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v4
-      with:
-        dotnet-version: '8.0.x'
-
-    - name: Restore
-      run: dotnet restore ./Portfolio.sln
-
-    - name: Build
-      run: dotnet build ./Portfolio.sln --configuration Release --no-restore
-
-    - name: Publish
-      run: dotnet publish ./Portfolio.sln --configuration Release --no-build --output '${{ env.WEBAPP_PACKAGE_PATH }}'
-
+   # - name: Setup .NET
+    ##  uses: actions/setup-dotnet@v4
+      #with:
+       # dotnet-version: '8.0.x'
+#
+ #   - name: Restore
+  #    run: dotnet restore ./Portfolio.sln
+#
+ #   - name: Build
+  #    run: dotnet build ./Portfolio.sln --configuration Release --no-restore
+#
+ #   - name: Publish
+  #    run: dotnet publish ./Portfolio.sln --configuration Release --no-build --output '${{ env.WEBAPP_PACKAGE_PATH }}'
+#
     - name: Deployment
       uses: SamKirkland/FTP-Deploy-Action@4.0.0
       with:
