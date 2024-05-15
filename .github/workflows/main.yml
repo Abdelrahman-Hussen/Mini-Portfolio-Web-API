@@ -40,7 +40,7 @@ jobs:
       run: |
         # Requires elevated access on server (self-hosted runner)
         Invoke-Expression $(New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/PowerShell/PowerShell/master/tools/Install-PowerShellRemoting.ps1') -ExecutionPolicy Bypass -NoProfile -InputFormat None
-        Enter-PSSession -ComputerName <server_name> -Credential (New-Object System.Management.Automation.PSCredential -ArgumentList ${{ env.FTP_USERNAME }}, (ConvertTo-SecureString -Force -AsPlainText ${{ env.FTP_PASSWORD }}).ToArray()))
+        Enter-PSSession -ComputerName https://mini-portfolio.runasp.net/ -Credential (New-Object System.Management.Automation.PSCredential -ArgumentList ${{ env.FTP_USERNAME }}, (ConvertTo-SecureString -Force -AsPlainText ${{ env.FTP_PASSWORD }}).ToArray()))
         Stop-Website -Name https://mini-portfolio.runasp.net/
         
     - name: Deployment
