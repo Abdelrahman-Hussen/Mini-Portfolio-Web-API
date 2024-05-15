@@ -18,6 +18,5 @@ namespace Portfolio.Controllers.AboutSection
         [HttpPost("[action]")]
         public async Task<ActionResult<ResponseModel<AboutUsDto>>> CreateOrUpdate([FromForm] CreateOrUpdateAboutUsDto Dto)
             => Ok(await _aboutUsService.CreateOrUpdate(Dto));
-
     }
 }
