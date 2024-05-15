@@ -18,5 +18,6 @@ namespace Portfolio.Controllers.AboutSection
         [HttpPost("[action]")]
         public async Task<ActionResult<ResponseModel<InfoDto>>> CreateOrUpdate([FromBody] CreateOrUpdateInfoDto Dto)
             => Ok(await _infoService.CreateOrUpdate(Dto));
+
     }
 }
