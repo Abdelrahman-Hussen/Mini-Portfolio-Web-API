@@ -36,13 +36,6 @@ jobs:
     - name: Publish
       run: dotnet publish ./Portfolio.sln --configuration Release --no-build --output '${{ env.WEBAPP_PACKAGE_PATH }}'
 
-    - name: Stop website
-      run: |
-        # Requires elevated access on server (self-hosted runner)
-        Invoke-Expression $(New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/PowerShell/PowerShell/master/tools/Install-PowerShellRemoting.ps1') -ExecutionPolicy Bypass -NoProfile -InputFormat None
-        Enter-PSSession -ComputerName https://mini-portfolio.runasp.net/ -Credential (New-Object System.Management.Automation.PSCredential -ArgumentList ${{ env.FTP_USERNAME }}, (ConvertTo-SecureString -Force -AsPlainText ${{ env.FTP_PASSWORD }}).ToArray()))
-        Stop-Website -Name https://mini-portfolio.runasp.net/
-        
     - name: Deployment
       uses: SamKirkland/FTP-Deploy-Action@4.0.0
       with:
