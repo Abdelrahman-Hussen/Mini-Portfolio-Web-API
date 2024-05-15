@@ -35,6 +35,12 @@ jobs:
 
     - name: Publish
       run: dotnet publish ./Portfolio.sln --configuration Release --no-build --output '${{ env.WEBAPP_PACKAGE_PATH }}'
+    
+    - name: Deploy to IIS
+      run: |
+        iisreset /stop
+        Copy-Item ./dotnetcorewebapp/* C:/inetpub/wwwroot/dotnetcore-webapp -Recurse -Force
+        iisreset /start
 
     - name: Deployment
       uses: SamKirkland/FTP-Deploy-Action@4.0.0
