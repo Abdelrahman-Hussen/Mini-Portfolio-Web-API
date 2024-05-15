@@ -8,7 +8,7 @@ on:
 
 env:
   WEBAPP_NAME: base-project
-  WEBAPP_PACKAGE_PATH: "./publish"
+  WEBAPP_PACKAGE_PATH: "./publish/"
   FTP_DISTANATION_URL: './wwwroot/'
   FTP_SERVER: 'site3637.siteasp.net'
   FTP_USERNAME: site3637
