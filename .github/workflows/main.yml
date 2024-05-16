@@ -35,7 +35,7 @@ jobs:
 
     - name: Removing unnecessary files
       run: |
-        rm -rf ${{ env.FTP_SERVER }}/wwwroot
+        rm -rf ${{ env.FTP_SERVER }}/wwwroot/
 
     - name: Publish
       run: dotnet publish ./Portfolio/Portfolio.csproj --configuration Release --no-build --output '${{ env.WEBAPP_PACKAGE_PATH }}'
