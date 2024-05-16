@@ -35,8 +35,7 @@ jobs:
 
     - name: Removing unnecessary files
       run: |
-       git rm -r --cached scss
-       git commit -m "Remove scss folder"
+        rm -rf ${{ env.FTP_SERVER }}/wwwroot
 
     - name: Publish
       run: dotnet publish ./Portfolio/Portfolio.csproj --configuration Release --no-build --output '${{ env.WEBAPP_PACKAGE_PATH }}'
