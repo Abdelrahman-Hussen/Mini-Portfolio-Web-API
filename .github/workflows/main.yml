@@ -33,10 +33,14 @@ jobs:
     - name: Build
       run: dotnet build ./Portfolio.sln --configuration Release --no-restore
 
-    - name: Removing unnecessary files
+    - name: Remove files from server
       run: |
         echo "Removing files from server"
-        curl -u "${{ env.FTP_USERNAME }}:${{ env.FTP_PASSWORD }}" ftp://${{ env.FTP_SERVER }} -Q "DELE /wwwroot/*"
+        files=$(curl -s -u "${{ env.FTP_USERNAME }}:${{ env.FTP_PASSWORD }}" ftp://${{ env.FTP_SERVER }} -Q "NLST /wwwroot")
+        for file in $files; do
+          echo "Deleting $file"
+          curl -s -u "${{ env.FTP_USERNAME }}:${{ env.FTP_PASSWORD }}" ftp://${{ env.FTP_SERVER }} -Q "DELE /wwwroot/$file"
+        done
 
 
 
