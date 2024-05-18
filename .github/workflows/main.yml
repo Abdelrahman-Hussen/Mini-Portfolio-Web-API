@@ -35,25 +35,16 @@ jobs:
 
     - name: Publish
       run: dotnet publish ./Portfolio/Portfolio.csproj --configuration Release --no-build --output '${{ env.WEBAPP_PACKAGE_PATH }}'
-    
-    - name: Delete files from server
-      uses: SamKirkland/FTP-Deploy-Action@4.0.0
-      with:
-        server: ${{ env.FTP_SERVER }}
-        username: ${{ env.FTP_USERNAME }}
-        password: ${{ env.FTP_PASSWORD }}
-        local-dir: '' # Empty local-dir to indicate deletion
-        server-dir: ${{ env.FTP_DISTANATION_URL }}
-        delete: true
   
-    - name: Deployment
-      uses: SamKirkland/FTP-Deploy-Action@4.0.0
-      with:
-        server: ${{ env.FTP_SERVER }}
-        username: ${{ env.FTP_USERNAME }}
-        password: ${{ env.FTP_PASSWORD }}
-        local-dir: ${{ env.WEBAPP_PACKAGE_PATH }}
-        server-dir: ${{ env.FTP_DISTANATION_URL }}
+    - name: Install lftp
+      run: sudo apt-get install -y lftp
+
+    - name: Clean FTP Directory
+      run: |
+        lftp -e "set ftp:ssl-allow no; mirror --reverse --delete --verbose --dry-run ${env.WEBAPP_PACKAGE_PATH} ${env.FTP_DISTANATION_URL}; quit" -u ${env.FTP_USERNAME},${env.FTP_PASSWORD} ${env.FTP_SERVER}
+
+
+
 
 
 
