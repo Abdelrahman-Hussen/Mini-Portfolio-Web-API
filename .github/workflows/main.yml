@@ -35,6 +35,9 @@ jobs:
 
     - name: Removing unnecessary files
       run: |
-       rm -rf ${{ env.FTP_SERVER }}/wwwroot/
+        echo "Removing files from server"
+        curl -u "${{ env.FTP_USERNAME }}:${{ env.FTP_PASSWORD }}" ftp://${{ env.FTP_SERVER }} -Q "DELE /wwwroot/*"
+
+
 
     
