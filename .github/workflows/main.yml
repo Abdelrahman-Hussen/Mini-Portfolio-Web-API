@@ -41,7 +41,7 @@ jobs:
 
     - name: Clean FTP Directory
       run: |
-        lftp -e "set ftp:ssl-allow no; mirror --reverse --delete --verbose --dry-run ${env.WEBAPP_PACKAGE_PATH} ${env.FTP_DISTANATION_URL}; quit" -u ${env.FTP_USERNAME},${env.FTP_PASSWORD} ${env.FTP_SERVER}
+        lftp -e "set ftp:ssl-allow no; mirror --reverse --delete --verbose --dry-run ${WEBAPP_PACKAGE_PATH} ${FTP_DISTANATION_URL}; quit" -u ${FTP_USERNAME},${FTP_PASSWORD} ${FTP_SERVER}
 
 
 
