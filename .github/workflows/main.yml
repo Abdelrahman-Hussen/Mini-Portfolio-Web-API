@@ -33,14 +33,27 @@ jobs:
     - name: Build
       run: dotnet build ./Portfolio.sln --configuration Release --no-restore
 
-    - name: Remove files from server
-      run: |
-        echo "Removing files from server"
-        files=$(curl -s -u "${{ env.FTP_USERNAME }}:${{ env.FTP_PASSWORD }}" ftp://${{ env.FTP_SERVER }} -Q "NLST /wwwroot")
-        for file in $files; do
-          echo "Deleting $file"
-          curl -s -u "${{ env.FTP_USERNAME }}:${{ env.FTP_PASSWORD }}" ftp://${{ env.FTP_SERVER }} -Q "DELE /wwwroot/$file"
-        done
+    - name: Publish
+      run: dotnet publish ./Portfolio/Portfolio.csproj --configuration Release --no-build --output '${{ env.WEBAPP_PACKAGE_PATH }}'
+    
+    - name: Delete files from server
+      uses: SamKirkland/FTP-Deploy-Action@4.0.0
+      with:
+        server: ${{ env.FTP_SERVER }}
+        username: ${{ env.FTP_USERNAME }}
+        password: ${{ env.FTP_PASSWORD }}
+        local-dir: '' # Empty local-dir to indicate deletion
+        server-dir: ${{ env.FTP_DISTANATION_URL }}
+        delete: true
+  
+    - name: Deployment
+      uses: SamKirkland/FTP-Deploy-Action@4.0.0
+      with:
+        server: ${{ env.FTP_SERVER }}
+        username: ${{ env.FTP_USERNAME }}
+        password: ${{ env.FTP_PASSWORD }}
+        local-dir: ${{ env.WEBAPP_PACKAGE_PATH }}
+        server-dir: ${{ env.FTP_DISTANATION_URL }}
 
 
 
