@@ -37,13 +37,15 @@ jobs:
       run: dotnet publish ./Portfolio/Portfolio.csproj --configuration Release --no-build --output '${{ env.WEBAPP_PACKAGE_PATH }}'
   
     - name: Install lftp
-      run: sudo apt-get install -y lftp
-
-    - name: Clean FTP Directory
+      run: sudo apt-get update && sudo apt-get install -y lftp
+    
+    - name: Upload app_offline.htm to take app offline
       run: |
-        lftp -e "set ftp:ssl-allow no; mirror --reverse --delete --verbose --dry-run ${WEBAPP_PACKAGE_PATH} ${FTP_DISTANATION_URL}; quit" -u ${FTP_USERNAME},${FTP_PASSWORD} ${FTP_SERVER}
-
-
+        touch app_offline.htm
+        echo "<html><body><h1>Site is under maintenance</h1></body></html>" > app_offline.htm
+        lftp -c "set ftp:ssl-allow yes; set ssl:verify-certificate false; set ftp:passive-mode true; open -u '${{ env.FTP_USERNAME }},${{ env.FTP_PASSWORD }}' ${{ env.FTP_SERVER }}; put -O ${{ env.FTP_DISTANATION_URL }} ./app_offline.htm"
+        rm app_offline.htm
+        sleep 2
 
 
 
