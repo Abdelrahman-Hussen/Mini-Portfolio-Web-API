@@ -10,9 +10,9 @@ env:
   WEBAPP_NAME: base-project
   WEBAPP_PACKAGE_PATH: "./publish/"
   FTP_DISTANATION_URL: './wwwroot/'
-  FTP_SERVER: 'site3637.siteasp.net'
-  FTP_USERNAME: site3637
-  FTP_PASSWORD: Ei7#8H@w+nM4
+  FTP_SERVER: ${{ secrets.FTP_SERVER }}
+  FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+  FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
   
 
 jobs:
