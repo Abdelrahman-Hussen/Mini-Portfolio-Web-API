@@ -45,9 +45,13 @@ jobs:
         echo "<html><body><h1>Site is under maintenance</h1></body></html>" > app_offline.htm
         lftp -c "set ftp:ssl-allow yes; set ssl:verify-certificate false; set ftp:passive-mode true; open -u '${{ env.FTP_USERNAME }},${{ env.FTP_PASSWORD }}' ${{ env.FTP_SERVER }}; put -O ${{ env.FTP_DISTANATION_URL }} ./app_offline.htm"
         rm app_offline.htm
-        sleep 2
+        sleep 2
 
-
-
-
-    
+    - name: Deployment
+      uses: SamKirkland/FTP-Deploy-Action@4.0.0
+      with:
+        server: ${{ env.FTP_SERVER }}
+        username: ${{ env.FTP_USERNAME }}
+        password: ${{ env.FTP_PASSWORD }}
+        local-dir: ${{ env.WEBAPP_PACKAGE_PATH }}
+        server-dir: ${{ env.FTP_DISTANATION_URL }}
