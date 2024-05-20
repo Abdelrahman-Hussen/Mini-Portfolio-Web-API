@@ -39,7 +39,7 @@ jobs:
     - name: Install lftp
       run: sudo apt-get update && sudo apt-get install -y lftp
     
-    - name: Upload app_offline.htm to take app offline
+    - name: Upload app_offline.html to take app offline
       run: |
         touch app_offline.html
         echo "<html><body><h1>Site is under maintenance</h1></body></html>" > app_offline.html
