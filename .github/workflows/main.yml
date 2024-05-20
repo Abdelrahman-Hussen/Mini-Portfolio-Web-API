@@ -55,3 +55,7 @@ jobs:
         password: ${{ env.FTP_PASSWORD }}
         local-dir: ${{ env.WEBAPP_PACKAGE_PATH }}
         server-dir: ${{ env.FTP_DISTANATION_URL }}
+
+    - name: Remove app_offline.html to bring app back online
+      run: |
+        lftp -c "set ftp:ssl-allow yes; set ssl:verify-certificate false; set ftp:passive-mode true; open -u '${{ env.FTP_USERNAME }},${{ env.FTP_PASSWORD }}' ${{ env.FTP_SERVER }}; rm -f ${{ env.FTP_DISTANATION_URL }}app_offline.htm"
